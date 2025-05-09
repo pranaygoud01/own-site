@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <style>
+#findTableBtn {
+  display: inline-block;
+  padding: 20px 40px;
+  color: black;
+  background-color: var(--gold-crayola);  /* Constant background */
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 400;
+  cursor: pointer;
+  
+}
+
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+/*
+.hero-fixed-button {
+  position: relative;
+  top: 82%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  width: 500px; 
+  text-align: center;
+}
+
+
+#orderNowBtn {
+  display: inline-block;
+  padding: 15px 40px;
+  background-color: hsl(38, 61%, 73%);
+  color: black;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+  font-weight: bold;
+} 
+
+*/
+/* Main Button Container */
+/* Fixed button container */
+#fixedMenuButton {
+  position: absolute;
+  top: 80%;
+  left: 54%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  width: 600px;
+  text-align: center;
+}
+
+/* For screens max width 1024px (Tailwind's lg breakpoint) */
+@media (max-width: 1024px) {
+  #fixedMenuButton {
+    left: 63%;
+  }
+}
+
+/* Hide the checkbox */
+#menuToggle {
+  display: none;
+}
+
+/* Order Now Button */
+#orderNowBtn {
+  display: inline-block;
+  right:50px;
+  padding: 10px 20px;
+  background-color: hsl(38, 61%, 73%);
+  color: black;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Show dropdown when checkbox is checked */
+#menuToggle:checked ~ #menuDropdown {
+  display: block;
+}
+
+/* Dropdown menu */
+#menuDropdown {
+  display: none;
+  position: absolute;
+  min-width: 300px;
+  top: 130%;
+  right: 230px;
+  z-index: 1000;
+  padding: 5px 0;
+  background: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+#menuDropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#menuDropdown li {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+#menuDropdown li:hover {
+  background-color: #f0f0f0;
+}
+
+#menuDropdown .dropdown-link {
+  text-decoration: none;
+  color: black;
+}
+
+/* Responsive */
+@media screen and (max-width: 320px) {
+  #fixedMenuButton {
+    width: 90%;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #orderNowBtn {
+    padding: 12px 30px;
+    font-size: 12px;
+    
+  }
+
+  #menuDropdown {
+    position: static;
+    transform: none;
+    width: 100%;
+    box-shadow: none;
+    border: none;
+    padding: 10px 0;
+  }
+
+  #menuDropdown li {
+    text-align: left;
+  }
+}
+
+
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+   .navbar-item.home a {
+          display: block;
+          padding: 12px 20px;
+          color: white;
+         background-color: #333;
+         text-decoration: none;
+         cursor: pointer;
+        }
+
+        .navbar-item.home a:hover {
+          background-color: #555;
+        }
+
+
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+  }
+  
+  .navbar-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navbar-item ul li {
+    position: relative;
+  }
+  
+  /* Navbar Links */
+  .navbar-item ul li a {
+    display: block;
+    padding: 12px 20px;
+    color: white;
+    background-color: #333;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .navbar-item ul li a:hover {
+    background-color: #555;
+  }
+  
+  /* Dropdown styles */
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    min-width: 300px;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    padding: 5px 0;
+    background: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+  }
+  
+  /* Show dropdown when parent is hovered or focused */
+  .dropdown:hover > .dropdown-menu,
+  .dropdown:focus-within > .dropdown-menu {
+    display: block;
+  }
+  
+  /* Submenu (Food) */
+  .dropdown-submenu {
+    position: relative;
+  }
+  
+  /* Scrollable Food submenu */
+  .dropdown-submenu .dropdown-menu {
+    left: 100%;
+    top: 0;
+    max-height: 300px; /* Set max height */
+    overflow-y: auto;  /* Enable vertical scroll */
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Show submenu when hovered */
+  .dropdown-submenu:hover > .dropdown-menu,
+  .dropdown-submenu:focus-within > .dropdown-menu {
+    display: block;
+  }
+  </style>
+  <!-- 
+    - primary meta tags
+  -->
+  <title>Nuwairahs Japanese and Mexican kitchen 
+9, northgatend 
+Bishop’s Stortford 
+CM23 2ET</title>
+
+  <meta name="title" content="Nuwairahs">
+  <meta name="description" content="This is a Restaurant html template made by codewithsadee">
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap" rel="stylesheet">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!-- 
+    - preload images
+  -->
+  <link rel="preload" as="image" href="./assets/images/hero-slider-1.jpg">
+  <link rel="preload" as="image" href="./assets/images/hero-slider-2.jpg">
+  <link rel="preload" as="image" href="./assets/images/hero-slider-3.jpg">
+
+</head>
+
+
+
+
+<body id="top">
+
+  <!-- 
+    - #PRELOADER
+  -->
+
+  <div class="preload" data-preaload>
+    <div class="circle"></div>
+    <p class="text" >Nuwairahs </p>
+  </div>
+
+
+
+
+
+  <!-- 
+    - #TOP BAR
+  -->
+
+  <div class="topbar">
+    <div class="container">
+
+      <address class="topbar-item">
+        <div class="icon">
+          <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
+        </div>
+
+        <span class="span">
+          Nuwairahs Japanese and Mexican kitchen 
+          Station road
+          Old Harlow
+          CM17 0AS
+        </span>
+      </address>
+
+      <div class="separator"></div>
+
+      <div class="topbar-item item-2">
+        <div class="icon">
+          <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+        </div>
+
+        <span class="span">Daily : 12.00 AM to 10.00 PM</span>
+      </div>
+
+      <a href="tel:+44 1279 801230" class="topbar-item link">
+        <div class="icon">
+          <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
+        </div>
+
+        <span class="span">+44 1279 801230</span>
+      </a>
+
+      <div class="separator"></div>
+
+      <a href="mailto:Info@nuwairahs.co.uk" class="topbar-item link">
+        <div class="icon">
+          <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+        </div>
+
+        <span class="span">Info@nuwairahs.co.uk</span>
+      </a>
+
+    </div>
+  </div>
+
+
+
+
+
+  <!-- 
+    - #HeDER
+  -->
+
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="#" class="logo">
+        <img  src="./assets/images/Nuwairahs Logo-01 final.png" width="150" height="50" alt="Home">
+      </a>
+
+      <nav class="navbar" data-navbar>
+
+        <button class="close-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+
+        <a href="#home" class="logo">
+          <img src="./assets/images/Nuwairahs Logo-01 final.png" width="150" height="50" alt=" Home">
+        </a>
+    
+          <ul class="navbar-list text-center">
+
+     
+          <li class="navbar-item home">
+            <a href="#">HOME</a>
+          </li>
+
+          <nav class="navbar-item">
+            <ul>
+                <!-- Menu Dropdown -->
+                <li class="dropdown">
+                    <a href="#" tabindex="0">MENU</a>
+                    <ul class="dropdown-menu">
+                        <!-- Food Dropdown -->
+                        <li class="dropdown-submenu">
+                            <a href="#" tabindex="0">Food ➤</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="pages/food.html#burger">BURGER AND CHIPS</a></li>
+                                <li><a href="pages/food.html#MAKIROLLS">MAKI ROLLS</a></li>
+                                <li><a href="pages/food.html#SPECIALITYROLLS">SPECIALITY ROLLS</a></li>
+                                <li><a href="pages/food.html#URAMAKIS">URAMAKI</a></li>
+                                <li><a href="pages/food.html#SASHIMI">SASHIMI</a></li>
+                                <li><a href="pages/food.html#STARTERS">STARTERS</a></li>
+                                <li><a href="pages/food.html#KIDSMEALS">KIDS MEALS</a></li>
+                                <li><a href="pages/food.html#DONBURI">DONBURI</a></li>
+                                <li><a href="pages/food.html#TACOS">TACOS</a></li>
+                                <li><a href="pages/food.html#NIGIRI">NIGIRI</a></li>
+                                <li><a href="pages/food.html#TEMAKI">TEMAKI</a></li>
+                                <li><a href="pages/food.html#SIDES">SIDES</a></li>
+                                <li><a href="pages/food.html#CHIMICHANGA">CHIMICHANGA</a></li>
+                                <li><a href="pages/food.html#BURRITO/RICEBOWL">BURRITO/RICE BOWL</a></li>
+                                <li><a href="pages/food.html#SETMENU">SETMENU</a></li>
+                                <li><a href="pages/food.html#FAJITA">FAJITA</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="pages/desserts.html">Desserts</a></li>
+                        <li><a href="pages/drinks.html">Drinks</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <li class="navbar-item home">
+          <a href="#contactus">CONTACT</a>
+        </li>
+      
+        
+         </ul>
+
+        <div class="text-center">
+          <p class="headline-1 navbar-title">Visit Us</p>
+
+          <address class="body-4">
+            Nuwairahs Japanese and Mexican kitchen 
+            Station road
+            Old Harlow
+            CM17 0AS
+          </address>
+          <a href="mailto:Info@nuwairahs.co.uk" class="body-4 sidebar-link">Info@nuwairahs.co.uk</a>
+          <a href="tel: +44 1279 801230" class="body-1 contact-number hover-underline">+44 1279 801230</a>
+         
+            <div class="separator"></div>
+          
+
+          <address class="body-4">
+            Nuwairahs Japanese and Mexican kitchen 
+            9, northgatend 
+            Bishop’s Stortford 
+            CM23 2ET
+          </address>
+          <a href="mailto:Info@nuwairahs.co.uk" class="body-4 sidebar-link">Info@nuwairahs.co.uk</a>
+          <a href="tel: +44 1279 801266" class="body-1 contact-number hover-underline">
+            +44 1279 801266
+          </a>
+          <br>
+          <div class="separator"></div>
+          <p class="body-4 navbar-text">Open: 12.00 AM - 10.00 PM</p>
+
+          <div class="separator"></div>
+
+        </div>
+
+      </nav>
+
+      <!-- <a href="" class="btn btn-secondary">
+        <span class="text text-1" >Find A Table</span>
+
+        <span class="text text-2" aria-hidden="true" >Find A Table</span>
+      </a> -->
+
+
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+        <span class="line line-3"></span>
+      </button>
+
+      <div class="overlay" data-nav-toggler data-overlay></div>
+
+    </div>
+  </header>
+
+
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="hero text-center" aria-label="home" id="home">
+
+        <ul class="hero-slider" id="heroSlider" data-hero-slider>
+      
+          <!-- Slide 1 -->
+          <li class="slider-item active" data-hero-slider-item>
+            <div class="slider-bg">
+              <img src="./assets/images/hero5.JPG" width="1880" height="950" alt="Hero Image 1" class="img-cover">
+            </div>
+            <p class="label-2 section-subtitle slider-reveal" id="home1">Tradational & Hygine</p>
+            <h1 class="display-1 hero-title slider-reveal">For the love of <br> delicious food</h1>
+            <p class="body-2 hero-text slider-reveal">Come with family & feel the joy of mouthwatering food</p>
+          </li>
+      
+          <!-- Slide 2 -->
+          <li class="slider-item" data-hero-slider-item>
+            <div class="slider-bg">
+              <img src="./assets/images/heroimage2.jpg" width="1880" height="950" alt="Hero Image 2" class="img-cover">
+            </div>
+            <p class="label-2 section-subtitle slider-reveal">delightful experience</p>
+            <h1 class="display-1 hero-title slider-reveal">Flavors Inspired by <br> the Seasons</h1>
+            <p class="body-2 hero-text slider-reveal">Come with family & feel the joy of mouthwatering food</p>
+          </li>
+      
+          <!-- Slide 3 -->
+          <li class="slider-item" data-hero-slider-item>
+            <div class="slider-bg">
+              <img src="./assets/images/heroimage3.JPG" width="1880" height="950" alt="Hero Image 3" class="img-cover">
+            </div>
+            <p class="label-2 section-subtitle slider-reveal">amazing & delicious</p>
+            <h1 class="display-1 hero-title slider-reveal">Where every flavor <br> tells a story</h1>
+            <p class="body-2 hero-text slider-reveal">Come with family & feel the joy of mouthwatering food</p>
+          </li>
+      
+        </ul>
+        <br>
+        <br>
+      
+<div class="hero-fixed-button" id="fixedMenuButton">
+    <a href="https://order.nuwairahs.co.uk/" id="orderNowBtn"> ORDER NOW </a>
+    
+</div> 
+
+
+  
+  
+
+  
+      
+        <!-- Navigation Buttons -->
+        <button class="slider-btn prev" aria-label="slide to previous" data-prev-btn>
+          <ion-icon name="chevron-back"></ion-icon>
+        </button>
+      
+        <button class="slider-btn next" aria-label="slide to next" data-next-btn>
+          <ion-icon name="chevron-forward"></ion-icon>
+        </button>
+      
+      </section>
+      
+
+
+      <div class="btn-container">
+        <!-- Hidden Checkbox for Toggle -->
+        <input type="checkbox" id="dropdownCheckbox" class="dropdown-checkbox ">
+        
+        <!-- Clickable Label for Dropdown (acts as a button) -->
+        <a href="https://order.nuwairahs.co.uk/" for="dropdownCheckbox" class="hero-btn has-after  dropdown-trigger">
+            <img src="./assets/images/hero-icon.png" width="48" height="48" 
+                alt="booking icon" class="hero-img"><br>
+            <span class="label-2 text-center span bookatable-text" id="book">Book A Table</span>
+        </a>
+        
+        <!-- Dropdown Menu -->
+       
+    </div>
+    
+    
+    
+
+    
+
+  
+
+
+      <!-- 
+        - #SERVICE
+      -->
+
+      <section class="section service bg-black-10 text-center" aria-label="service">
+        <div class="container">
+
+          <p class="section-subtitle label-2">Flavors For Royalty</p>
+
+          <h2 class="headline-1 section-title">We Offer Top Notch</h2>
+
+          <p class="section-text">
+            Flavors for Royalty – At Nuwairah’s Japanese and Mexican Kitchen, we craft dishes fit for kings and queens. Combining the elegance of Japanese
+             cuisine with the boldness of Mexican flavors, we deliver a dining experience rich in taste, tradition, and creativity. Indulge in flavors that define true culinary excellence
+          </p>
+
+          <ul class="grid-list">
+
+            <li>
+              <div class="service-card">
+
+                <a href="#" class="has-before hover:shine">
+                  <figure class="card-banner img-holder" style="--width: 285; --height: 336;">
+                    <img src="./assets/images/delicious.JPG" width="285" height="336" loading="lazy" alt="delicious"
+                      class="img-cover">
+                  </figure>
+                </a>
+
+                <div class="card-content">
+
+                  <h3 class="title-4 card-title">
+                    <a href="#">Delicious</a>
+                  </h3>
+                 <p>Healthy, Delicious, Energizing, Fresh, Satisfying.</p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="service-card">
+
+                <a href="#" class="has-before hover:shine">
+                  <figure class="card-banner img-holder" style="--width: 285; --height: 336;">
+                    <img src="./assets/images/Appetizers.JPG" width="285" height="336" loading="lazy" alt="Appetizers"
+                      class="img-cover">
+                  </figure>
+                </a>
+
+                <div class="card-content">
+
+                  <h3 class="title-4 card-title">
+                    <a href="#">Appetizers</a>
+                  </h3>
+                 <p>Crispy, Savory, Flavorful, Bite-sized, Tempting.</p>
+                 
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="service-card">
+
+                <a href="#" class="has-before hover:shine">
+                  <figure class="card-banner img-holder" style="--width: 285; --height: 336;">
+                    <img src="./assets/images/service-3.jpg" width="285" height="336" loading="lazy" alt="Drinks"
+                      class="img-cover">
+                  </figure>
+                </a>
+
+                <div class="card-content">
+
+                  <h3 class="title-4 card-title">
+                    <a href="#">Drinks</a>
+                  </h3>
+                <p>Refreshing, Chilled, Flavorful, Energizing, Smooth. </p>
+                  
+
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+          <img src="./assets/images/shape-1.png" width="246" height="412" loading="lazy" alt="shape"
+            class="shape shape-1 move-anim">
+          <img src="./assets/images/shape-2.png" width="343" height="345" loading="lazy" alt="shape"
+            class="shape shape-2 move-anim">
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #ABOUT
+      -->
+
+      <section class="section about text-center" aria-labelledby="about-label" id="about">
+        <div class="container">
+
+          <div class="about-content">
+
+            <p class="label-2 section-subtitle" id="about-label">Our Story</p>
+
+            <h2 class="headline-1 section-title">Every Flavor Tells a Story</h2>
+
+            <p class="section-text">
+              Nuwairah’s Japanese and Mexican Kitchen blends two rich culinary traditions through fusion cuisine. By combining Japanese umami flavors with Mexican bold spices, it creates innovative dishes like spicy tuna tacos and miso guacamole. 
+              This cross-cultural approach enhances taste experiences, offering a unique and exciting journey for food lovers
+            </p>
+
+            <div class="contact-label">Book Through Call</div><br>
+
+            <a href="tel: +44 1279 801230" class="body-1 contact-number hover-underline">Old Harlow +44 1279 801230</a><br>
+            <h1>OR</h1><br>
+            <a href="tel: +44 1279 801266" class="body-1 contact-number hover-underline">Bishops strotford +44 1279 801266</a>
+
+            <a href="#" class="btn btn-primary">
+              <span class="text text-1">Read More</span>
+
+              <span class="text text-2" aria-hidden="true">Read More</span>
+            </a>
+
+          </div>
+
+          <figure class="about-banner">
+
+            <img src="./assets/images/Social Media Posts_page-0001.jpg" width="770" height="770" loading="lazy" alt="about banner"
+              class="w-100" data-parallax-item data-parallax-speed="1">
+
+            <div class="abs-img abs-img-1 has-before" data-parallax-item data-parallax-speed="1.75">
+              <img src="./assets/images/about-abs-image.jpg" width="285" height="285" loading="lazy" alt=""
+                class="w-100">
+            </div>
+
+          
+
+          </figure>
+
+          <img src="./assets/images/shape-3.png" width="197" height="194" loading="lazy" alt="" class="shape">
+
+        </div>
+      </section>
+
+
+
+
+
+   
+  
+
+
+
+
+      <!-- 
+        - #MENU
+      -->
+
+      <section class="section menu" aria-label="menu-label" id="menu">
+        <div class="container">
+
+          <p class="section-subtitle text-center label-2">Special Selection</p>
+
+          <h2 class="headline-1 section-title text-center">Delicious Menu</h2>
+
+          <ul class="grid-list">
+
+            <li>
+              <div class="menu-card hover:card">
+
+                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
+                  <img src="./assets/images/menu-1.jpg" width="80" height="70" loading="lazy" alt="Greek Salad"
+                    class="img-cover">
+                </figure>
+
+                <div>
+
+                  <div class="title-wrapper">
+                    <h3 class="title-3">
+                      <a href="#" class="card-title">Miso Soup</a>
+                    </h3>
+
+                  
+
+                    <span class="span title-2">£4.99</span>
+                  </div>
+
+                  <p class="card-text label-1">
+                    A traditional Japanese soup made with miso paste, tofu, seaweed, and green onions, offering a warm and umami-rich flavor.
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="menu-card hover:card">
+
+                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
+                  <img src="./assets/images/menu-2.jpg" width="80" height="70" loading="lazy" alt="Lasagne"
+                    class="img-cover">
+                </figure>
+
+                <div>
+
+                  <div class="title-wrapper">
+                    <h3 class="title-3">
+                      <a href="#" class="card-title">Dragon Roll</a>
+                    </h3>
+
+                    <span class="span title-2">£17.49</span>
+                  </div>
+
+                  <p class="card-text label-1">
+                    A delicious sushi roll filled with shrimp tempura and cucumber, topped with avocado, eel, and drizzled with a savory eel sauce.
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="menu-card hover:card">
+
+                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
+                  <img src="./assets/images/menu-3.jpg" width="80" height="70" loading="lazy" alt="Butternut Pumpkin"
+                    class="img-cover">
+                </figure>
+
+                <div>
+
+                  <div class="title-wrapper">
+                    <h3 class="title-3">
+                      <a href="#" class="card-title">Mango Dessert</a>
+                    </h3>
+
+                    <span class="span title-2">£4.99</span>
+                  </div>
+
+                  <p class="card-text label-1">
+                    A delightful treat made with fresh, ripe mangoes, layered with creamy custard and a hint of coconut, offering a perfect balance of sweetness and tropical flavor.
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="menu-card hover:card">
+
+                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
+                  <img src="./assets/images/prawntempura2.jpg" width="80" height="70" loading="lazy" alt="Prawn Tempura"
+                    class="img-cover">
+                </figure>
+
+                <div>
+
+                  <div class="title-wrapper">
+                    <h3 class="title-3">
+                      <a href="#" class="card-title">Prawn Tempura</a>
+                    </h3>
+
+                    <span class="span title-2">£9.99</span>
+                  </div>
+
+                  <p class="card-text label-1">
+                    Prawn Tempura features fresh prawns coated in a light, crispy tempura batter and deep-fried to golden perfection. Served with a flavorful dipping sauce, it offers a delicate crunch with a juicy, tender bite.
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="menu-card hover:card">
+
+                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
+                  <img src="./assets/images/Prawn Katsu curry rice2.jpg" width="80" height="70" loading="lazy" alt="Prawn Katsu curry rice"
+                    class="img-cover">
+                </figure>
+
+                <div>
+
+                  <div class="title-wrapper">
+                    <h3 class="title-3">
+                      <a href="#" class="card-title">Prawn Katsu curry rice</a>
+                    </h3>
+
+                    <span class="span title-2">£17.99</span>
+                  </div>
+
+                  <p class="card-text label-1">
+                    Prawn Katsu Curry Rice features crispy, breaded prawns served over steamed rice and topped with rich, flavorful Japanese curry. The crunchy prawns pair perfectly with the smooth, savory curry sauce for a deliciously satisfying meal.
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="menu-card hover:card">
+
+                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
+                  <img src="./assets/images/Chickenkatsucurryrice 2.jpg" width="80" height="70" loading="lazy" alt="Chicken katsu Curry Rice"
+                    class="img-cover">
+                </figure>
+
+                <div>
+
+                  <div class="title-wrapper">
+                    <h3 class="title-3">
+                      <a href="#" class="card-title">Chicken katsu Curry Rice</a>
+                    </h3>
+
+                    <span class="span title-2">£17.99</span>
+                  </div>
+
+                  <p class="card-text label-1">
+                    Chicken Katsu Curry Rice features crispy, breaded chicken cutlet served over steamed rice and smothered in rich, flavorful Japanese curry. This hearty dish combines a crunchy texture with a smooth, savory curry sauce for a perfect balance.
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+          <p class="menu-text text-center">
+            During daily from <span class="span">12:00 AM</span> to <span class="span">10:00 PM</span>
+          </p>
+
+          
+
+          <img src="./assets/images/shape-5.png" width="921" height="1036" loading="lazy" alt="shape"
+            class="shape shape-2 move-anim">
+          <img src="./assets/images/shape-6.png" width="343" height="345" loading="lazy" alt="shape"
+            class="shape shape-3 move-anim">
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #TESTIMONIALS
+      -->
+
+      <section class="section testi text-center has-bg-image"
+        style="background-image: url('./assets/images/testimonial-bg.jpg')" aria-label="testimonials">
+        <div class="container">
+
+          <div class="quote">”</div>
+
+          <p class="headline-2 testi-text">
+            I wanted to thank you for inviting me down for that amazing dinner the other night. The food was
+            extraordinary.
+          </p>
+
+          <div class="wrapper">
+            <div class="separator"></div>
+            <div class="separator"></div>
+            <div class="separator"></div>
+          </div>
+
+          <div class="profile">
+            <img src="./assets/images/testi-avatar.jpg" width="100" height="100" loading="lazy" alt="Sam Jhonson"
+              class="img">
+
+            <p class="label-2 profile-name">Sam Jhonson</p>
+          </div>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #RESERVATION
+      -->
+
+      <section class="reservation">
+        <div class="container">
+
+          <div class="form reservation-form bg-black-10">
+           
+            <div class="form-right text-center" style="background-image: url('./assets/images/form-pattern.png')" >
+
+              <h1 class="headline-1 text-center" id="contactus">Contact Us</h1>
+
+              <p class="contact-label">Our Locations</p>
+
+              <br>
+              <address class="body-4">
+                Nuwairahs Japanese and Mexican kitchen 
+                Station road
+                Old Harlow
+                CM17 0AS 
+              </address>
+
+              <a href="mailto:Info@nuwairahs.co.uk" class="body-4 contact-link">Info@nuwairahs.co.uk</a>
+              <a href="tel: +44 1279 801230" class="body-4 contact-link">Booking Request : +44 1279 801230</a>
+
+              <p class="title-1"> & </p>
+              <br>
+
+              <address class="body-4">
+               Nuwairahs Japanese and Mexican kitchen 
+               9, northgatend 
+                Bishop’s Stortford 
+                CM23 2ET
+             </address>
+
+             <a href="mailto:Info@nuwairahs.co.uk" class="body-4 contact-link">Info@nuwairahs.co.uk</a>
+              <a href="tel: +44 1279 801266" class="body-4 contact-link">Booking Request : +44 1279 801266</a>
+
+             
+
+              <div class="separator"></div>
+
+              
+
+              <p class="contact-label">Special Weekend Restaurant Timings</p>
+
+              <p class="body-4">
+                Friday & Saturday<br>
+                12.00 AM - 12.00 PM
+              </p>
+
+              <p class="contact-label">Daily Restaurant Timings</p>
+
+              <p class="body-4">
+                 Sunday to Thursday  <br>
+                12.00 AM - 10.00 PM
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #FEATURES
+      -->
+
+      <section class="section features text-center" aria-label="features">
+        <div class="container">
+
+          <p class="section-subtitle label-2">Why Choose Us</p>
+
+          <h2 class="headline-1 section-title" id="aboutus">Our Strength</h2>
+
+          <ul class="grid-list">
+
+            <li class="feature-item">
+              <div class="feature-card">
+
+                <div class="card-icon">
+                  <img src="./assets/images/features-icon-1.png" width="100" height="80" loading="lazy" alt="icon">
+                </div>
+
+                <h3 class="title-2 card-title">Hygienic Food</h3>
+
+                <p class="label-1 card-text">Hygienic food is food that is prepared, stored, and consumed in a clean and safe manner to prevent contamination and foodborne illnesses. It ensures better health and digestion.</p>
+
+              </div>
+            </li>
+
+            <li class="feature-item">
+              <div class="feature-card">
+
+                <div class="card-icon">
+                  <img src="./assets/images/features-icon-2.png" width="100" height="80" loading="lazy" alt="icon">
+                </div>
+
+                <h3 class="title-2 card-title">Fresh Environment</h3>
+
+                <p class="label-1 card-text">A fresh environment promotes well-being, reduces stress, and enhances productivity. Whether at home, work, or outdoors, maintaining a clean and fresh space is essential.</p>
+
+              </div>
+            </li>
+
+            <li class="feature-item">
+              <div class="feature-card">
+
+                <div class="card-icon">
+                  <img src="./assets/images/features-icon-3.png" width="100" height="80" loading="lazy" alt="icon">
+                </div>
+
+                <h3 class="title-2 card-title">Skilled Chefs</h3>
+
+                <p class="label-1 card-text">A skilled chef is a culinary professional who has mastered the art of cooking, food presentation, and kitchen management. They bring creativity, precision, and expertise to every dish they prepare.</p>
+
+              </div>
+            </li>
+
+            <li class="feature-item">
+              <div class="feature-card">
+
+                <div class="card-icon">
+                  <img src="./assets/images/features-icon-4.png" width="100" height="80" loading="lazy" alt="icon">
+                </div>
+
+                <h3 class="title-2 card-title">Event & Party</h3>
+
+                <p class="label-1 card-text">Whether it's a birthday, wedding, corporate event, or casual get-together, hosting a great event requires planning and organization.</p>
+
+              </div>
+            </li>
+
+          </ul>
+
+          <img src="./assets/images/shape-7.png" width="208" height="178" loading="lazy" alt="shape"
+            class="shape shape-1">
+
+          <img src="./assets/images/shape-8.png" width="120" height="115" loading="lazy" alt="shape"
+            class="shape shape-2">
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #EVENT
+      -->
+
+      <section class="section event bg-black-10" aria-label="event">
+        <div class="container">
+
+          <p class="section-subtitle label-2 text-center">Recent Updates</p>
+
+          <h2 class="section-title headline-1 text-center">Upcoming Event</h2>
+
+          <ul class="grid-list">
+
+            <li>
+              <div class="event-card has-before hover:shine">
+
+                <div class="card-banner img-holder" style="--width: 350; --height: 450;">
+                  <img src="./assets/images/event1.JPG" width="350" height="450" loading="lazy"
+                    alt="Flavour so good you’ll try to eat with your eyes." class="img-cover">
+
+      
+                </div>
+
+                <div class="card-content">
+                  <p class="card-subtitle label-2 text-center">Upcoming Mother's Day Event</p>
+
+                  <h3 class="card-title title-2 text-center">
+                   
+              
+                  </h3>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="event-card has-before hover:shine">
+
+                <div class="card-banner img-holder" style="--width: 350; --height: 450;">
+                  <img src="./assets/images/event-2.jpg" width="350" height="450" loading="lazy"
+                    alt="Flavour so good you’ll try to eat with your eyes." class="img-cover">
+
+                 
+                </div>
+
+                <div class="card-content">
+                  <p class="card-subtitle label-2 text-center">Healthy Food</p>
+
+                  <h3 class="card-title title-2 text-center">
+                    Eating healthy food is essential for maintaining good health, boosting energy, and preventing diseases.
+                  </h3>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="event-card has-before hover:shine">
+
+                <div class="card-banner img-holder" style="--width: 350; --height: 450;">
+                  <img src="./assets/images/event-3.jpg" width="350" height="450" loading="lazy"
+                    alt="Flavour so good you’ll try to eat with your eyes." class="img-cover">
+
+            
+                </div>
+
+                <div class="card-content">
+                  <p class="card-subtitle label-2 text-center">Recipie</p>
+
+                  <h3 class="card-title title-2 text-center">
+                    A nutritious, high-protein, and fiber-rich meal perfect for lunch or dinner!
+                  </h3>
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+    
+
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+
+
+
+
+  <!-- 
+    - #FOOTER
+  -->
+
+  <footer class="footer section has-bg-image text-center"
+    style="background-image: url('./assets/images/footer-bg.jpg')">
+    <div class="container">
+
+      <div class="footer-top grid-list">
+
+        <div class="footer-brand has-before has-after">
+
+          <a href="#" class="logo">
+            <img src="./assets/images/Nuwairahs Logo-01 final.png" width="160" height="50" loading="lazy" alt="grilli home">
+          </a>
+
+          <address class="body-4">
+            Nuwairahs Japanese and Mexican kitchen 
+            Station road
+            Old Harlow
+            CM17 0AS
+          </address>
+
+          <a href="mailto:Info@nuwairahs.co.uk" class="body-4 contact-link">Info@nuwairahs.co.uk</a>
+
+          <a href="tel: +44 1279 801230" class="body-4 contact-link">Booking Request : +44 1279 801230</a>
+ 
+
+          <div class="wrapper">
+            <div class="separator"></div>
+            <div class="separator"></div>
+            <div class="separator"></div>
+          </div>
+
+
+          <address class="body-4">
+            Nuwairahs Japanese and Mexican kitchen 
+            9, northgatend 
+            Bishop’s Stortford 
+            CM23 2ET
+          </address>
+
+          <a href="mailto:Info@nuwairahs.co.uk" class="body-4 contact-link">Info@nuwairahs.co.uk</a>
+
+              <a href="tel: +44 1279 801266" class="body-4 contact-link">Booking Request : +44 1279 801266</a>
+
+      
+
+        </div>
+
+        <ul class="footer-list">
+
+          <li>
+            <a href="#" class="label-2 footer-link hover-underline">Home</a>
+          </li>
+
+          <li>
+            <a href="#" class="label-2 footer-link hover-underline">Menus</a>
+          </li>
+
+          <li>
+            <a href="#aboutus" class="label-2 footer-link hover-underline">About Us</a>
+          </li>
+
+
+          <li>
+            <a href="#contactus" class="label-2 footer-link hover-underline">Contact</a>
+          </li>
+
+        </ul>
+
+        <ul class="footer-list">
+
+      
+          <li>
+            <a href=" https://www.facebook.com/share/19dkdgKZwQ/?mibextid=wwXIfr" 
+               class="label-2 footer-link hover-underline">
+               Facebook
+            </a>
+          </li>
+
+
+          <li>
+            <a href="https://www.instagram.com/nuwairahskitchen?igsh=cHlnYzJoYTN5cGw0" 
+               class="label-2 footer-link hover-underline">
+               Instagram
+            </a>
+          </li>
+
+          <li>
+            <a href="https://maps.app.goo.gl/7wgLe51pWVqTUdKR7?g_st=com.google.maps.preview.copy" 
+               class="label-2 footer-link hover-underline">
+              Google Map
+            </a>
+          </li>
+          
+          
+
+        </ul>
+
+      </div>
+
+     
+
+    </div>
+  </footer>
+
+
+
+
+
+  <!-- 
+    - #BACK TO TOP
+  -->
+
+  <a href="#top" class="back-top-btn active" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+  </a>
+
+
+
+
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
